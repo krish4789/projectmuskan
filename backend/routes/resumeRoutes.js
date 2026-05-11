@@ -2,7 +2,7 @@ const router = require('express').Router();
 const multer = require('multer');
 const jwt = require('jsonwebtoken');
 const path = require('path');
-const { uploadResume, getResume, getUserResumes } = require('../controllers/resumeController');
+const { uploadResume, getResume, getUserResumes, guestUpload, getGuestResume } = require('../controllers/resumeController');
 
 // JWT auth middleware
 const auth = (req, res, next) => {
@@ -29,6 +29,8 @@ const upload = multer({
   }
 });
 
+router.post('/guest/upload', upload.single('resume'), guestUpload);
+router.get('/guest/resume/:id', getGuestResume);
 router.post('/upload', auth, upload.single('resume'), uploadResume);
 router.get('/resumes', auth, getUserResumes);
 router.get('/resume/:id', auth, getResume);
