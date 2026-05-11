@@ -18,6 +18,9 @@ exports.uploadResume = async (req, res) => {
       text = result.value;
     }
 
+    if (!text || text.trim().length < 50)
+      return res.status(400).json({ message: 'Resume appears to be blank or unreadable. Please upload a valid resume.' });
+
     const analysis = await analyzeResume(text);
 
     const resume = await Resume.create({
