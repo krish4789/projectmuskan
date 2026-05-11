@@ -6,6 +6,24 @@ async function isValidResume(text) {
   const words = text.trim().split(/\s+/).filter(Boolean);
   if (words.length < 80) return false;
 
+  // Reject placeholder/template resumes immediately
+  const placeholderPatterns = [
+    /\[your (full )?name\]/i,
+    /\[name\]/i,
+    /yourname@/i,
+    /your(name|email|phone|address)@/i,
+    /linkedin\.com\/in\/yourname/i,
+    /github\.com\/yourname/i,
+    /\+61 xxxx/i,
+    /\+91 xxxxx/i,
+    /xxxx xxx xxxx/i,
+    /task \d+\.\d+ submission/i,
+    /notes for.*submission/i,
+    /firstname_lastname/i,
+    /\[your .{1,30}\]/i,
+  ];
+  if (placeholderPatterns.some(p => p.test(text))) return false;
+
   const prompt = `You are a strict resume validator. Determine if the following text is a REAL, substantive resume.
 
 REJECT if ANY of these are true:
@@ -14,10 +32,12 @@ REJECT if ANY of these are true:
 - It lacks actual bullet points or descriptions under experience/education (just listing a company name and year is NOT enough)
 - It has no skills section or technical/professional skills listed
 - It reads like a placeholder, test document, or incomplete draft
+- It contains placeholder text like [Your Name], yourname@email.com, or XXXX phone numbers
+- It contains submission instructions or academic task notes
 
 ACCEPT only if ALL of these are true:
-- It is clearly written by a job seeker about themselves
-- Experience entries have actual descriptions of responsibilities or achievements (not just a job title and year)
+- It is clearly written by a real job seeker with their actual name and contact details
+- Experience entries have actual descriptions of responsibilities or achievements
 - It has meaningful content across at least 3 sections
 
 Respond ONLY with valid JSON: {"isResume": true} or {"isResume": false}
