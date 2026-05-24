@@ -1,3 +1,8 @@
+process.on('unhandledRejection', (reason) => {
+  if (reason && reason.name === 'FormatError') return; // suppress pdf-parse internal errors
+  console.error('Unhandled rejection:', reason);
+});
+
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');

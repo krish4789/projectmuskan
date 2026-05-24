@@ -395,3 +395,272 @@
 @media (max-width: 400px) {
   .db-history-grid { grid-template-columns: 1fr; }
 }
+
+/* ── Tab Switcher ── */
+.db-tab-switcher {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2.5rem;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 0.35rem;
+  width: fit-content;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+}
+
+.db-tab-btn {
+  padding: 0.55rem 1.4rem;
+  border: none;
+  border-radius: 10px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  color: #6b7280;
+  background: transparent;
+  transition: all 0.2s;
+}
+.db-tab-btn.active {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: white;
+  box-shadow: 0 2px 8px rgba(34,197,94,0.3);
+}
+.db-tab-btn:not(.active):hover { background: #f3f4f6; color: #374151; }
+
+/* ── JD Section ── */
+.db-jd-section { max-width: 900px; }
+
+.db-jd-header { margin-bottom: 1.75rem; }
+.db-jd-desc { font-size: 0.9rem; color: #6b7280; margin-top: 0.35rem; }
+
+.db-jd-uploads {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.db-jd-upload-block {}
+
+.db-jd-upload-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 0.6rem;
+}
+.db-jd-upload-label span { font-weight: 400; color: #9ca3af; font-size: 0.78rem; }
+
+.db-jd-check-btn {
+  max-width: 340px;
+  margin: 0 auto 1.5rem;
+  display: block;
+}
+
+/* ── JD Result ── */
+.db-jd-result {
+  background: white;
+  border: 1px solid #f3f4f6;
+  border-radius: 20px;
+  padding: 1.75rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+  margin-top: 0.5rem;
+}
+
+.db-jd-result-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.db-jd-score-circle {
+  flex-shrink: 0;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 4px solid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.db-jd-score-num { font-size: 1.6rem; font-weight: 900; line-height: 1; }
+.db-jd-score-sub { font-size: 0.72rem; color: #9ca3af; }
+
+.db-jd-verdict {
+  display: inline-block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 0.3rem 0.85rem;
+  border-radius: 100px;
+  margin-bottom: 0.6rem;
+  text-transform: capitalize;
+}
+.db-jd-summary { font-size: 0.9rem; color: #4b5563; line-height: 1.6; }
+
+.db-jd-result-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.db-jd-result-block {}
+.db-jd-block-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #374151;
+  margin-bottom: 0.6rem;
+}
+
+.db-jd-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.db-jd-tag {
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 0.25rem 0.65rem;
+  border-radius: 100px;
+}
+.db-jd-tag.matched { background: #dcfce7; color: #15803d; }
+.db-jd-tag.missing { background: #fee2e2; color: #dc2626; }
+
+.db-jd-req {
+  font-size: 0.83rem;
+  padding: 0.3rem 0;
+  line-height: 1.5;
+}
+.db-jd-req.met { color: #15803d; }
+.db-jd-req.missing { color: #dc2626; }
+
+.db-jd-suggestions {
+  border-top: 1px solid #f3f4f6;
+  padding-top: 1.25rem;
+}
+.db-jd-suggestion-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.6rem 0;
+  font-size: 0.875rem;
+  color: #374151;
+  border-bottom: 1px solid #f9fafb;
+}
+.db-jd-suggestion-num {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: white;
+  border-radius: 50%;
+  font-size: 0.72rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1px;
+}
+
+@media (max-width: 640px) {
+  .db-jd-uploads { grid-template-columns: 1fr; }
+  .db-jd-result-grid { grid-template-columns: 1fr; }
+  .db-tab-switcher { width: 100%; }
+  .db-tab-btn { flex: 1; text-align: center; }
+}
+
+/* ── Recommended Certifications ── */
+.db-cert-section {
+  border-top: 1px solid #f3f4f6;
+  padding-top: 1.5rem;
+  margin-top: 1.25rem;
+}
+
+.db-cert-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+.db-cert-header-icon { font-size: 1.5rem; flex-shrink: 0; margin-top: 2px; }
+.db-cert-title { font-size: 0.95rem; font-weight: 700; color: #111827; }
+.db-cert-subtitle { font-size: 0.8rem; color: #6b7280; margin-top: 0.2rem; }
+
+.db-cert-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.db-cert-card {
+  background: #fafafa;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 1rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.db-cert-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.08); transform: translateY(-2px); }
+
+.db-cert-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.db-cert-icon { font-size: 1.2rem; }
+.db-cert-provider {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #6b7280;
+  background: #f3f4f6;
+  padding: 0.2rem 0.55rem;
+  border-radius: 100px;
+}
+
+.db-cert-name {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.4;
+}
+
+.db-cert-skill-tag {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #7c3aed;
+  background: #ede9fe;
+  padding: 0.2rem 0.6rem;
+  border-radius: 100px;
+  width: fit-content;
+}
+
+.db-cert-links {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.db-cert-link {
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.3rem 0.75rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: opacity 0.15s, transform 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.db-cert-link:hover { opacity: 0.85; transform: translateY(-1px); }
+.db-cert-link.free  { background: #dcfce7; color: #15803d; }
+.db-cert-link.paid  { background: #dbeafe; color: #1d4ed8; }
+
+@media (max-width: 640px) {
+  .db-cert-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 400px) {
+  .db-cert-grid { grid-template-columns: 1fr; }
+}

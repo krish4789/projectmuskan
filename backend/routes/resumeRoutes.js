@@ -2,7 +2,7 @@ const router = require('express').Router();
 const multer = require('multer');
 const jwt = require('jsonwebtoken');
 const path = require('path');
-const { uploadResume, getResume, getUserResumes, guestUpload, getGuestResume } = require('../controllers/resumeController');
+const { uploadResume, getResume, getUserResumes, guestUpload, getGuestResume, checkCompatibility } = require('../controllers/resumeController');
 
 // JWT auth middleware
 const auth = (req, res, next) => {
@@ -29,9 +29,18 @@ const upload = multer({
   }
 });
 
+const uploadFields = multer({
+  storage,
+  fileFilter: (req, file, cb) => {
+    const allowed = ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+    cb(null, allowed.includes(file.mimetype));
+  }
+});
+
 router.post('/guest/upload', upload.single('resume'), guestUpload);
 router.get('/guest/resume/:id', getGuestResume);
 router.post('/upload', auth, upload.single('resume'), uploadResume);
+router.post('/check-compatibility', auth, uploadFields.fields([{ name: 'jd', maxCount: 1 }, { name: 'resume', maxCount: 1 }]), checkCompatibility);
 router.get('/resumes', auth, getUserResumes);
 router.get('/resume/:id', auth, getResume);
 

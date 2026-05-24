@@ -22,5 +22,6 @@ const getGuestId = () => {
 };
 export const guestUploadResume = (formData) =>
   API.post('/guest/upload', formData, { headers: { 'x-guest-id': getGuestId() } });
+export const checkCompatibility = (formData) => API.post('/check-compatibility', formData);
 export const getGuestResume = (id) =>
   API.get(`/guest/resume/${id}`, { headers: { 'x-guest-id': getGuestId() } });
